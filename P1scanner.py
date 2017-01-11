@@ -1,17 +1,25 @@
-type = 0
-value = 0
+#TOFIX function call in P1Parser.py
+
+def testfunctioncall():
+    global test
+    print("test function call! ")
+    test = 5005
+    print(test)
+
 
 def p1parserscanner(c):
     global type
     global value
-    DotSeen= False
-    ParenthesisSeen = False
-    ColonSeen = False
-    StarSeen = False
+    global DotSeen
+    global ParenthesisSeen
+    global ColonSeen
+    global StarSeen
+
+
     if c == ':':
         type = 0
         value = 0
-        ColonSeen =True
+        ColonSeen = True
         return 0
     elif c == '(':
         if (type == 0):
@@ -25,26 +33,28 @@ def p1parserscanner(c):
         DotSeen = True
         return 0
     elif c == ')':
-        if (DotSeen == 1) and (type != 0):
+        if (DotSeen == True) and (type != 0):
             return True
         return 0
     elif c == '*':
         StarSeen = True
-    elif c.isalnum() and (ParenthesisSeen==True or ColonSeen==True or DotSeen==True):
-        DsmrValue = 10 * value + (c - '0')
-    elif c.isalpha and not (StarSeen):
-        p1pDsmrValue = 0
-        p1pParenthesisSeen = False
-        p1pWrongValueIsHere = True
+    elif c.isdigit() and ((ParenthesisSeen == True) or (ColonSeen == True) or (DotSeen == True)):
+        b = int(float(c))
+        value =10*value+b
+        #print(value)
+    elif c.isalpha and not(StarSeen):
+        value = 0
+        ParenthesisSeen = False
+        WrongValueIsHere = True
         return 0
-    elif (p1pStarSeen) and (c == 'k' or c == 'W' or c == 'h'):
+    elif (StarSeen) and (c == 'k' or c == 'W' or c == 'h'):
         return 0
     else:
         p1pDotSeen = False
         p1pParenthesisSeen = False
         p1pColonSeen = False
         p1pStarSeen = False
-        return 0
+    return 0
 
 
 def P1P_GetValue():
@@ -53,9 +63,10 @@ def P1P_GetValue():
     else:
         return 0
 
+
 def P1P_GetType():
     if (type >= 100) and (type <= 999):
         return type
     else:
-        return 0 #non valid type
+        return 0  # non valid type
 
