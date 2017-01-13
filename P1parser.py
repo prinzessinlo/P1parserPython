@@ -293,7 +293,6 @@ def P1Parser_Receive_char(DataFromTelegram):
                 temporarystate = "PARSER_LOOKING_FOR_BEGIN"
     else:
         print("Im out of for")
-        print(bufferData)
         extractvalues(bufferData)
         print(ListofDataValues)
         print("energyConsumed: ", ListofDataValues[0])
@@ -304,4 +303,22 @@ def P1Parser_Receive_char(DataFromTelegram):
 # -------------------------------------------
 #function call for  P1Parser_Receive_char(DataFromTelegram)
 #-------------------------------------------
-#P1Parser_Receive_char(DataFromTelegram) #work correctly
+#P1Parser_Receive_char(DataFromTelegram) #work correctly#
+
+Exemple1   = "/ISk5\2ME383-1008\r\n\r\n0-0:96.1.0(52127969)\n1-0:0.9.1(140217)\n1-0:0.9.2(150427)\n1-0:1.8.0(000688.01*kWh)\n1-0:1.7.0(000131.72*kWh)\n1-0:1.8.2(000000.08*kWh)\n1-0:1.8.3(000000.26*kWh)\n1-0:1.7.0(000.000*kW)\n1-0:3.7.0(000.000*kvar)\n1-0:0.8.0(00900)\n1-0:0.3.0(01000)\n1-0:0.3.1(01000)\n!\r\n"
+#P1Parser_Receive_char(Exemple1)
+
+
+#-------------------------------------------
+#Getting data from the file and trying to parse and extractvalues
+#-------------------------------------------
+metertelegram= open("MeterTelegram.txt", 'rU')
+lines = metertelegram.read()
+metertelegram.close()
+print (lines)
+for line in lines:
+    line=line.strip()
+if (isinstance(lines,str)):
+    P1Parser_Receive_char(lines)
+else:
+    print ("error it's not a string")
