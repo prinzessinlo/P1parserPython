@@ -2,6 +2,9 @@
 from readfile import *
 from p1parserclass import *
 
+#from testclass import *
+import json
+from objectencoder import  *
 
 #DataFromTelegram = ""  # buffer which contain the telegram as string
 #buffersize = 0  # size of telegram length
@@ -48,7 +51,40 @@ from p1parserclass import *
 #-------------------------------------------
 
 #instanciate from fileReaderClass, one object called file:
-"""file= FileReader()
+file= FileReader()
 file.TelegramfileReading()
 parser = P1Parser()  #one object from p1parserclass
 if (isinstance(file.telegram, str)):
+    parser.P1Parser_Receive_char(file.telegram)
+    #print(parser.ListofDataValues)
+
+
+
+
+class A(object):
+    value = str(parser.ListofDataValues[0])
+    unit = "kWh"
+
+class B(object):
+    value = str(parser.ListofDataValues[1])
+    unit = "kWh"
+
+class C(object):
+    value = str(parser.ListofDataValues[2])
+    unit = "Wh"
+
+class D(object):
+    value = str(parser.ListofDataValues[3])
+    unit = "Wh"
+
+
+class jsonFormatForMeter(object):
+
+    def __init__(self):
+        self.EnergyConsumed = A()
+        self.EnergyProduced = B()
+        self.PowerConsumed = C()
+        self.PowerProduced = D()
+
+print(json.dumps(jsonFormatForMeter(), cls=ObjectEncoder, indent=2, sort_keys=True))
+
