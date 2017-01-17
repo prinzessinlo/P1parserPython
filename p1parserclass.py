@@ -66,3 +66,186 @@ class P1Parser:
             return self.type
         else:
             return 0  # non valid type
+#==========================================
+    def extractvalues(self, data):
+        meterValue = 0
+        meterType = 0
+        global a, b, c, d
+        for letter in data:
+            if self.p1parserscanner(letter):
+                #print("Je suis là!")
+                meterType = self.P1P_GetType()
+                meterValue = self.P1P_GetValue()
+                if meterType == 180:
+                    self.ListofDataValues[0] = meterValue  # energyConsumed
+                elif meterType == 280:
+                    self.ListofDataValues[1] = meterValue  # energyProduced
+                elif meterType == 170:
+                    self.ListofDataValues[2] = meterValue  # powerConsumed
+                elif meterType == 270:
+                    self.ListofDataValues[3] = meterValue  # powerProduced
+
+#==========================================
+
+    def P1Parser_Receive_char(self, telegramBeforeValidation):
+        temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+        newChar = '/'
+        bufferBlock = ""
+        bufferCRC = ""
+        bufferData = ""
+        IDidx = 0
+        DataIdx = 0
+        CRCLen = 0
+        CRC = 4
+        CRC_is_OK = False
+        for letter in telegramBeforeValidation:
+            newChar=letter
+            if temporarystate=="PARSER_LOOKING_FOR_BEGIN":
+                if (newChar == '/'):
+                    BlockIdx = 0
+                    bufferBlock= bufferBlock+ newChar
+                    BlockIdx = BlockIdx + 1 #we store value into buffer block for CRC verification
+                    temporarystate = "PARSER_LOOKING_FOR_LETTER1"
+
+                else:
+                    temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+
+            elif "PARSER_LOOKING_FOR_LETTER1" == temporarystate:
+                if newChar.isalpha():
+                    temporarystate = "PARSER_LOOKING_FOR_LETTER2"
+
+                    bufferBlock = bufferBlock + newChar
+                    BlockIdx = BlockIdx + 1
+                else:
+                    temporarystate= "PARSER_LOOKING_FOR_BEGIN"
+            elif temporarystate == "PARSER_LOOKING_FOR_LETTER2":
+                if newChar.isalpha():
+                    temporarystate = "PARSER_LOOKING_FOR_LETTER3"
+
+                    bufferBlock = bufferBlock + newChar
+                    BlockIdx = BlockIdx + 1
+                else:
+                    temporarystate= "PARSER_LOOKING_FOR_BEGIN"
+            elif temporarystate == "PARSER_LOOKING_FOR_LETTER3":
+                if newChar.isalpha():
+                    temporarystate = "PARSER_LOOKING_FOR_NUMBER"
+
+                    bufferBlock = bufferBlock + newChar
+                    BlockIdx = BlockIdx + 1
+                else:
+                    temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+            elif temporarystate == "PARSER_LOOKING_FOR_NUMBER":
+                if newChar.isdigit():
+                    temporarystate = "PARSER_LOOKING_FOR_CR1"
+
+                    bufferBlock = bufferBlock + newChar
+                    BlockIdx = BlockIdx + 1
+                else:
+                    temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+
+            elif temporarystate=="PARSER_LOOKING_FOR_CR1":
+                if newChar == "\r": #if we receive \r
+                    bufferBlock = bufferBlock + newChar
+                    BlockIdx = BlockIdx + 1
+                    temporarystate = "PARSER_LOOKING_FOR_LF1"
+
+                elif (IDidx <= 1024):  #and (P1P_IsPrintableChar(newChar)))
+                #We don't know the exact length of ID but we know Data bloc can be up to 1024characters
+                    bufferBlock = bufferBlock + newChar
+                    BlockIdx =BlockIdx +1
+                    IDidx=IDidx+1
+                else:
+                    temporarystate= "PARSER_LOOKING_FOR_BEGIN"
+
+            elif temporarystate == "PARSER_LOOKING_FOR_LF1":
+                if (newChar == "\n"):
+                    bufferBlock = bufferBlock + newChar
+                    BlockIdx =BlockIdx +1
+                    temporarystate = "PARSER_LOOKING_FOR_CR2"
+
+                else:
+                    temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+
+            elif temporarystate == "PARSER_LOOKING_FOR_CR2":
+                if newChar == "\r": #if we receive \r
+                    bufferBlock = bufferBlock + newChar
+                    BlockIdx = BlockIdx + 1
+                    temporarystate = "PARSER_LOOKING_FOR_LF2"
+                else:
+                    temporarystate= "PARSER_LOOKING_FOR_BEGIN"
+            elif temporarystate == "PARSER_LOOKING_FOR_LF2":
+                if (newChar == "\n"):
+                    bufferBlock = bufferBlock + newChar
+                    BlockIdx = BlockIdx + 1
+                    temporarystate = "PARSER_LOOKING_FOR_DATAGeneral"
+
+                else:
+                    temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+            elif temporarystate == "PARSER_LOOKING_FOR_DATAGeneral":
+                if newChar == "\0":
+                    temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+                elif newChar != "!":   #0x21="!"
+                    #fixme if data is more than the length of the buffer
+                    bufferBlock = bufferBlock + newChar
+                    BlockIdx = BlockIdx + 1
+                    bufferData = bufferData+newChar
+                    DataIdx = DataIdx+1
+                elif ((newChar == "!") and (DataIdx == 0)):
+                # if we receive ! & no data we should again to begin
+                    temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+                elif (newChar == "!" and DataIdx > 0):
+                    temporarystate = "PARSER_LOOKING_FOR_ENDOFBLOC"
+
+                    bufferBlock = bufferBlock + newChar
+                    BlockIdx = BlockIdx + 1
+                else:
+                    temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+
+            elif temporarystate == "PARSER_LOOKING_FOR_ENDOFBLOC":
+                if newChar.isdigit():
+                    CRCLen = 1
+                    bufferBlock = bufferBlock + newChar
+                    BlockIdx = BlockIdx + 1
+                    temporarystate = "PARSER_LOOKING_FOR_CRC"
+
+                elif newChar == "\n":
+                    temporarystate = "PARSER_LOOKING_FOR_LF"
+
+                else:
+                    temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+
+            elif temporarystate == "PARSER_LOOKING_FOR_CRC":
+                if newChar.isdigit():
+                    if CRCLen <= 4:
+                        bufferCRC = bufferCRC + newChar
+                        CRCLen= CRCLen + 1
+                    if CRCLen == CRC:
+                        temporarystate = "PARSER_LOOKING_FOR_CR"
+
+                else:
+                    temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+
+            elif temporarystate == "PARSER_LOOKING_FOR_CR":
+                if newChar == "\r": #if we receive \r
+                    temporarystate = "PARSER_LOOKING_FOR_LF"
+
+                else:
+                    temporarystate= "PARSER_LOOKING_FOR_BEGIN"
+            elif temporarystate == "PARSER_LOOKING_FOR_LF":
+                if newChar == 0x0A:
+                    if CRCLen == 0:
+                        CRC_is_OK = True
+                elif CRCLen == 4:
+                    if bufferCRC=="0505":
+                        CRC_is_OK = True
+                        print("CRC is OK! Sleep well!" )
+                if (CRC_is_OK==False):
+                    temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+        else:
+            #print("Im out of for")
+            self.extractvalues(bufferData)
+
+            #print("cEnergy: ", self.ListofDataValues[0])
+            #print("pEnergy: ", self.ListofDataValues[1])
+            #print("cPower: ", self.ListofDataValues[2])
+            #print("pPower: ", self.ListofDataValues[3])
