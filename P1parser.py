@@ -61,30 +61,25 @@ if (isinstance(file.telegram, str)):
 
 
 
-class A(object):
-    value = str(parser.ListofDataValues[0])
-    unit = "kWh"
+class energy(object):
+    def __init__(self, energy):
+        self.value = str(energy)
+        self.unit = "kWh"
 
-class B(object):
-    value = str(parser.ListofDataValues[1])
-    unit = "kWh"
-
-class C(object):
-    value = str(parser.ListofDataValues[2])
-    unit = "Wh"
-
-class D(object):
-    value = str(parser.ListofDataValues[3])
-    unit = "Wh"
+class power(object):
+    def __init__(self, energy):
+        self.value = str(energy)
+        self.unit = "kWh"
 
 
 class jsonFormatForMeter(object):
 
     def __init__(self):
-        self.EnergyConsumed = A()
-        self.EnergyProduced = B()
-        self.PowerConsumed = C()
-        self.PowerProduced = D()
+        self.EnergyConsumed = energy(parser.ListofDataValues[0])
+        self.EnergyProduced = energy(parser.ListofDataValues[1])
+        self.PowerConsumed = power(parser.ListofDataValues[2])
+        self.PowerProduced = power(parser.ListofDataValues[3])
 
 print(json.dumps(jsonFormatForMeter(), cls=ObjectEncoder, indent=2, sort_keys=True))
+
 
