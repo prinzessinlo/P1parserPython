@@ -1,4 +1,17 @@
-class P1Parser:
+import json
+from objectencoder import  *
+class energyCPObjAttr(object):
+    def __init__(self, energy):
+        self.value = str(energy)
+        self.unit = "kWh"
+
+class powerCPObjAttr(object):
+    def __init__(self, power):
+        self.value = str(power)
+        self.unit = "kWh"
+
+
+class P1Parser(object):
     Parserstates = {"PARSER_LOOKING_FOR_BEGIN", "PARSER_LOOKING_FOR_LETTER1", "PARSER_LOOKING_FOR_LETTER2",
                     "PARSER_LOOKING_FOR_LETTER3", "PARSER_LOOKING_FOR_NUMBER", "PARSER_LOOKING_FOR_CR1", "PARSER_LOOKING_FOR_LF1",
                     "PARSER_LOOKING_FOR_CR2", "PARSER_LOOKING_FOR_LF2", "PARSER_LOOKING_FOR_DATAGeneral", "PARSER_LOOKING_FOR_ENDOFBLOC",
@@ -13,8 +26,23 @@ class P1Parser:
         self.ColonSeen = False
         self.StarSeen = False
 
+        #-------
+
+        self.EnergyConsumed = 0
+        self.EnergyProduced = 0
+        self.PowerConsumed = 0
+        self.PowerProduced = 0
+
     def __getattr__(self, ListofDataValues):
         return self.ListofDataValues
+
+    def converttojson(self):
+        self.EnergyConsumed = energyCPObjAttr(self.ListofDataValues[0])
+        self.EnergyProduced = energyCPObjAttr(self.ListofDataValues[1])
+        self.PowerConsumed = powerCPObjAttr(self.ListofDataValues[2])
+        self.PowerProduced = powerCPObjAttr(self.ListofDataValues[3])
+        print(json.dumps({"EnergyConsumed":self.EnergyConsumed, "EnergyProduced":self.EnergyProduced, "PowerConsumed":self.PowerConsumed, "PowerProduced":self.PowerProduced }, cls=ObjectEncoder, indent=2, sort_keys=True))
+
     def p1parserscanner(self, c):
         if c == ':':
             self.type = 0
@@ -249,3 +277,4 @@ class P1Parser:
             #print("pEnergy: ", self.ListofDataValues[1])
             #print("cPower: ", self.ListofDataValues[2])
             #print("pPower: ", self.ListofDataValues[3])
+
