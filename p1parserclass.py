@@ -266,17 +266,14 @@ class P1Parser(object):
                     if CRCLen == 0:
                         CRC_is_OK = True
                 elif CRCLen == 4:
-                    print("Im in CRCLen == 4 ")
-                    ReturnCRCValue= CRC16().calculate(bufferBlock)
-                    print("Im in ReturnCRCValue", ReturnCRCValue)
+                    ReturnCRCValue= self.frominttostringofhex(CRC16().calculate(bufferBlock))
                     if (ReturnCRCValue==bufferCRC):
-                        print("ReturnCRCValue==bufferCRC ")
                         CRC_is_OK = True
                         print("CRC is OK! Sleep well!" )
                 if (CRC_is_OK==False):
                     temporarystate = "PARSER_LOOKING_FOR_BEGIN"
         else:
-            print("Im out of for")
+            #print("Im out of for")
             self.extractvalues(bufferData)
 
             #print("cEnergy: ", self.ListofDataValues[0])
@@ -284,3 +281,8 @@ class P1Parser(object):
             #print("cPower: ", self.ListofDataValues[2])
             #print("pPower: ", self.ListofDataValues[3])
 
+    def frominttostringofhex(self, ReturnCRCValue):
+        b = str(hex(ReturnCRCValue))
+        #splitted = b.split("0x")
+        CRCUppercase = (b.split("0x"))[1].upper()
+        return CRCUppercase
