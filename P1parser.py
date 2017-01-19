@@ -3,9 +3,19 @@ from readfile import *
 from p1parserclass import *
 
 #from testclass import *
-
+import json
 
 from convertobjtojson import  *
+
+from PyCRC.CRC16 import CRC16
+from PyCRC.CRC16DNP import CRC16DNP
+from PyCRC.CRC16Kermit import CRC16Kermit
+from PyCRC.CRC16SICK import CRC16SICK
+from PyCRC.CRC32 import CRC32
+from PyCRC.CRCCCITT import CRCCCITT
+
+
+#-----------------------
 #DataFromTelegram = ""  # buffer which contain the telegram as string
 #buffersize = 0  # size of telegram length
 
@@ -61,3 +71,8 @@ if (isinstance(file.telegram, str)):
 
 
 
+#input = "/KFM5KAIFA-METER\r\n\r\n1-0:1.8.0(000671.578*kWh)\r\n1-0:2.8.0(000842.472*kWh)\r\n1-0:2.8.1(000000.000*kWh)\r\n1-0:2.8.2(000000.000*kWh)\r\n0-0:96.14.0(0001)\r\n1-0:1.7.0(00.333*kW)\r\n1-0:2.7.0(00.444*kW)\r\n!"
+#print(CRC16().calculate(input))
+
+bufferblock="/KFM5KAIFA-METER\r\n\r\n1-0:1.8.0(000671.578*kWh)\r\n1-0:2.8.0(000842.472*kWh)\r\n1-0:1.7.0(00.333*kW)\r\n1-0:2.7.0(00.444*kW)\r\n!"
+print(CRC16().calculate(bufferblock)) #399E

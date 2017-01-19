@@ -1,4 +1,6 @@
-import json
+
+from PyCRC.CRC16 import CRC16
+
 from objectencoder import  *
 class energyCPObjAttr(object):
     def __init__(self, energy):
@@ -230,9 +232,9 @@ class P1Parser(object):
                     temporarystate = "PARSER_LOOKING_FOR_BEGIN"
 
             elif temporarystate == "PARSER_LOOKING_FOR_ENDOFBLOC":
-                if newChar.isdigit():
+                if newChar.isalnum():
                     CRCLen = 1
-                    bufferBlock = bufferBlock + newChar
+                    bufferCRC = bufferCRC + newChar
                     BlockIdx = BlockIdx + 1
                     temporarystate = "PARSER_LOOKING_FOR_CRC"
 
@@ -243,7 +245,7 @@ class P1Parser(object):
                     temporarystate = "PARSER_LOOKING_FOR_BEGIN"
 
             elif temporarystate == "PARSER_LOOKING_FOR_CRC":
-                if newChar.isdigit():
+                if newChar.isalnum():
                     if CRCLen <= 4:
                         bufferCRC = bufferCRC + newChar
                         CRCLen= CRCLen + 1
@@ -264,13 +266,17 @@ class P1Parser(object):
                     if CRCLen == 0:
                         CRC_is_OK = True
                 elif CRCLen == 4:
-                    if bufferCRC=="0505":
+                    print("Im in CRCLen == 4 ")
+                    ReturnCRCValue= CRC16().calculate(bufferBlock)
+                    print("Im in ReturnCRCValue", ReturnCRCValue)
+                    if (ReturnCRCValue==bufferCRC):
+                        print("ReturnCRCValue==bufferCRC ")
                         CRC_is_OK = True
                         print("CRC is OK! Sleep well!" )
                 if (CRC_is_OK==False):
                     temporarystate = "PARSER_LOOKING_FOR_BEGIN"
         else:
-            #print("Im out of for")
+            print("Im out of for")
             self.extractvalues(bufferData)
 
             #print("cEnergy: ", self.ListofDataValues[0])
