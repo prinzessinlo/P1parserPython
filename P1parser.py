@@ -2,8 +2,39 @@
 from readfile import *
 from p1parserclass import *
 
-#from testclass import *
-import json
+
+
+#-------------------------------------------
+#Getting data from the file and trying to parse and extractvalues
+#-------------------------------------------
+
+#instanciate from fileReaderClass, one object called file:
+file= FileReader()
+file.TelegramfileReading()
+parser = P1Parser()  #one object from p1parserclass
+
+if (isinstance(file.telegram, str)):
+    parser.P1Parser_Receive_char(file.telegram)
+    parser.converttojson()
+
+
+
+
+
+#extra for help
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #-----------------------
@@ -47,18 +78,6 @@ import json
 #P1Parser_Receive_char(Exemple1)
 
 
-#-------------------------------------------
-#Getting data from the file and trying to parse and extractvalues
-#-------------------------------------------
-
-#instanciate from fileReaderClass, one object called file:
-file= FileReader()
-file.TelegramfileReading()
-parser = P1Parser()  #one object from p1parserclass
-
-if (isinstance(file.telegram, str)):
-    parser.P1Parser_Receive_char(file.telegram)
-    parser.converttojson()
 
 
 
