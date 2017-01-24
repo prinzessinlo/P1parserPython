@@ -192,9 +192,9 @@ class P1ParserTest(unittest.TestCase):
             self.assertTrue(parser.CRC_is_OK)
 
 
-    def test_ParserReadingFromFileAndCRCCheck(self):
-        file = FileReader("C:\\Users\Amel\Documents\TWINGZ\P1ParserPython\MeterTelegram.txt")
-        file.TelegramfileReading()
+    def test_ParserReadingFromMeterTelegramtxtAndCheckCRC(self):
+        file = FileReader()
+        file.TelegramfileReading("C:\\Users\Amel\Documents\TWINGZ\P1ParserPython\MeterTelegram.txt")
         parser = P1Parser()  # one object from p1parserclass
         localtelegram = file.telegram
         parser.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
@@ -204,19 +204,186 @@ class P1ParserTest(unittest.TestCase):
             if (len(ReturnedValue) == 3):
                 ReturnedValue = "0" + ReturnedValue
             self.assertEqual(ReturnedValue, parser.bufferCRC)
-            print("returned ", ReturnedValue)
-            print("buffer crc" , parser.bufferCRC)
+            #print("returned ", ReturnedValue)
+            #print("buffer crc" , parser.bufferCRC)
 
 
-    def test_ParserReadingFromFileAndCRCCheck(self):
-        file = FileReader("C:\\Users\Amel\Documents\TWINGZ\P1ParserPython\Teleegramexamples\example1.txt")
-        file.TelegramfileReading()
-        parser = P1Parser()  # one object from p1parserclass
-        localtelegram = file.telegram
-        parser.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
-        parser.P1Parser_Receive_char(localtelegram)
-        ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
-        if (parser.bufferCRC != ""):
-            if (len(ReturnedValue) == 3):
-                ReturnedValue = "0" + ReturnedValue
-            self.assertEqual(ReturnedValue, parser.bufferCRC)
+    def test_ParserReadingFromExample1(self):
+        file = FileReader()
+        file.TelegramfileReading("C:\\Users\Amel\Documents\TWINGZ\P1ParserPython\Telegrams\example1.txt")
+        if (file.telegram != ""):
+            parser = P1Parser()  # one object from p1parserclass
+            localtelegram = file.telegram
+            parser.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+            parser.P1Parser_Receive_char(localtelegram)
+            ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
+            if (parser.bufferCRC != ""):
+                if (len(ReturnedValue) == 3):
+                    ReturnedValue = "0" + ReturnedValue
+                self.assertEqual(ReturnedValue, parser.bufferCRC)
+                self.assertTrue(parser.CRC_is_OK)
+                #print("test1", parser.bufferCRC)
+        else:
+            print("file is empty! ")
+
+    def test_ParserReadingFromExample2(self):
+        file = FileReader()
+        file.TelegramfileReading("C:\\Users\Amel\Documents\TWINGZ\P1ParserPython\Telegrams\example2.txt")
+        if (file.telegram != ""):
+            parser = P1Parser()  # one object from p1parserclass
+            localtelegram = file.telegram
+            parser.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+            parser.P1Parser_Receive_char(localtelegram)
+            ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
+            if (parser.bufferCRC != ""):
+                if (len(ReturnedValue) == 3):
+                    ReturnedValue = "0" + ReturnedValue
+                self.assertEqual(ReturnedValue, parser.bufferCRC)
+                self.assertTrue(parser.CRC_is_OK)
+                #print("test2", parser.bufferCRC)
+        else:
+            print("file is empty! ")
+
+    def test_ParserReadingFromExample3(self):
+        file = FileReader()
+        file.TelegramfileReading("C:\\Users\Amel\Documents\TWINGZ\P1ParserPython\Telegrams\example3.txt")
+        if (file.telegram != ""):
+            parser = P1Parser()  # one object from p1parserclass
+            localtelegram = file.telegram
+            parser.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+            parser.P1Parser_Receive_char(localtelegram)
+            ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
+            if (parser.bufferCRC != ""):
+                if (len(ReturnedValue) == 3):
+                    ReturnedValue = "0" + ReturnedValue
+                self.assertEqual(ReturnedValue, parser.bufferCRC)
+                self.assertTrue(parser.CRC_is_OK)
+                #print("test3", parser.bufferCRC)
+        else:
+            print("file is empty! ")
+
+    def test_ParserReadingFromExample4(self):
+        file = FileReader()
+        file.TelegramfileReading("C:\\Users\Amel\Documents\TWINGZ\P1ParserPython\Telegrams\example4.txt")
+        if (file.telegram != ""):
+            parser = P1Parser()  # one object from p1parserclass
+            localtelegram = file.telegram
+            parser.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+            parser.P1Parser_Receive_char(localtelegram)
+            ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
+            if (parser.bufferCRC != ""):
+                if (len(ReturnedValue) == 3):
+                    ReturnedValue = "0" + ReturnedValue
+                self.assertEqual(ReturnedValue, parser.bufferCRC)
+                self.assertTrue(parser.CRC_is_OK)
+                #print("test4", parser.bufferCRC)
+        else:
+            print("file is empty! ")
+
+    def test_ParserReadingFromExample5(self):
+        file = FileReader()
+        file.TelegramfileReading("C:\\Users\Amel\Documents\TWINGZ\P1ParserPython\Telegrams\example5.txt")
+        if (file.telegram != ""):
+            parser = P1Parser()  # one object from p1parserclass
+            localtelegram = file.telegram
+            parser.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+            parser.P1Parser_Receive_char(localtelegram)
+            ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
+            if (parser.bufferCRC != ""):
+                if (len(ReturnedValue) == 3):
+                    ReturnedValue = "0" + ReturnedValue
+                self.assertEqual(ReturnedValue, parser.bufferCRC)
+                self.assertTrue(parser.CRC_is_OK)
+                #print("test5", parser.bufferCRC)
+        else:
+            print("file is empty! ")
+
+    def test_ParserReadingFromExample6(self):
+        file = FileReader()
+        file.TelegramfileReading("C:\\Users\Amel\Documents\TWINGZ\P1ParserPython\Telegrams\example6.txt")
+        if (file.telegram != ""):
+            parser = P1Parser()  # one object from p1parserclass
+            localtelegram = file.telegram
+            parser.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+            parser.P1Parser_Receive_char(localtelegram)
+            ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
+            if (parser.bufferCRC != ""):
+                if (len(ReturnedValue) == 3):
+                    ReturnedValue = "0" + ReturnedValue
+                self.assertEqual(ReturnedValue, parser.bufferCRC)
+                self.assertTrue(parser.CRC_is_OK)
+                #print("test6", parser.bufferCRC)
+        else:
+            print("file is empty! ")
+
+    def test_ParserReadingFromExample7(self):
+        file = FileReader()
+        file.TelegramfileReading("C:\\Users\Amel\Documents\TWINGZ\P1ParserPython\Telegrams\example7.txt")
+        if (file.telegram != ""):
+            parser = P1Parser()  # one object from p1parserclass
+            localtelegram = file.telegram
+            parser.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+            parser.P1Parser_Receive_char(localtelegram)
+            ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
+            if (parser.bufferCRC != ""):
+                if (len(ReturnedValue) == 3):
+                    ReturnedValue = "0" + ReturnedValue
+                self.assertEqual(ReturnedValue, parser.bufferCRC)
+                self.assertTrue(parser.CRC_is_OK)
+                #print("test7", parser.bufferCRC)
+        else:
+            print("file is empty! ")
+
+    def test_ParserReadingFromExample8(self):
+        file = FileReader()
+        file.TelegramfileReading("C:\\Users\Amel\Documents\TWINGZ\P1ParserPython\Telegrams\example8.txt")
+        if (file.telegram != ""):
+            parser = P1Parser()  # one object from p1parserclass
+            localtelegram = file.telegram
+            parser.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+            parser.P1Parser_Receive_char(localtelegram)
+            ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
+            if (parser.bufferCRC != ""):
+                if (len(ReturnedValue) == 3):
+                    ReturnedValue = "0" + ReturnedValue
+                self.assertEqual(ReturnedValue, parser.bufferCRC)
+                self.assertTrue(parser.CRC_is_OK)
+                #print("test8", parser.bufferCRC)
+        else:
+            print("file is empty! ")
+
+    def test_ParserReadingFromExample9(self):
+        file = FileReader()
+        file.TelegramfileReading("C:\\Users\Amel\Documents\TWINGZ\P1ParserPython\Telegrams\example9.txt")
+        if (file.telegram != ""):
+            parser = P1Parser()  # one object from p1parserclass
+            localtelegram = file.telegram
+            parser.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+            parser.P1Parser_Receive_char(localtelegram)
+            ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
+            if (parser.bufferCRC != ""):
+                if (len(ReturnedValue) == 3):
+                    ReturnedValue = "0" + ReturnedValue
+                self.assertEqual(ReturnedValue, parser.bufferCRC)
+                self.assertTrue(parser.CRC_is_OK)
+                #print("test9", parser.bufferCRC)
+        else:
+            print("file is empty! ")
+
+    def test_ParserReadingFromExample10(self):
+        file = FileReader()
+        file.TelegramfileReading("C:\\Users\Amel\Documents\TWINGZ\P1ParserPython\Telegrams\example10.txt")
+        if (file.telegram != ""):
+            parser = P1Parser()  # one object from p1parserclass
+            localtelegram = file.telegram
+            parser.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+            parser.P1Parser_Receive_char(localtelegram)
+            ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
+            if (parser.bufferCRC != ""):
+                if (len(ReturnedValue) == 3):
+                    ReturnedValue = "0" + ReturnedValue
+                self.assertEqual(ReturnedValue, parser.bufferCRC)
+                self.assertTrue(parser.CRC_is_OK)
+                #print("test10", parser.bufferCRC)
+        else:
+            print("file is empty! ")

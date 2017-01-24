@@ -294,7 +294,6 @@ class P1Parser(object):
                         if (len(ReturnCRCValue) == 3):
                             ReturnCRCValue = "0" + ReturnCRCValue
                         if (ReturnCRCValue == self.bufferCRC):
-                            print("ReturnCRCValue == self.bufferCRC")
                             self.CRC_is_OK = True
 
                 if (self.CRC_is_OK == False):
