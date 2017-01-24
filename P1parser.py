@@ -9,9 +9,14 @@ from p1parserclass import *
 #-------------------------------------------
 
 #instanciate from fileReaderClass, one object called file:
-file= FileReader()
+file= FileReader("C:\\Users\Amel\Documents\TWINGZ\P1ParserPython\MeterTelegram.txt")
 file.TelegramfileReading()
 parser = P1Parser()  #one object from p1parserclass
+telegram=file.telegram
+bufferblock = telegram.split("!")
+telegram= bufferblock[0] + "!" + "\r\n"
+#print ("Telegram in the file\r\n", telegram)
+#print(CRC16().calculate(telegram)) #58668= 0xE52C
 
 if (isinstance(file.telegram, str)):
     parser.P1Parser_Receive_char(file.telegram)
@@ -22,19 +27,6 @@ if (isinstance(file.telegram, str)):
 
 
 #extra for help
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #-----------------------
@@ -84,6 +76,11 @@ if (isinstance(file.telegram, str)):
 #input = "/KFM5KAIFA-METER\r\n\r\n1-0:1.8.0(000671.578*kWh)\r\n1-0:2.8.0(000842.472*kWh)\r\n1-0:2.8.1(000000.000*kWh)\r\n1-0:2.8.2(000000.000*kWh)\r\n0-0:96.14.0(0001)\r\n1-0:1.7.0(00.333*kW)\r\n1-0:2.7.0(00.444*kW)\r\n!"
 #print(CRC16().calculate(input))
 
-#bufferblock="/KFM5KAIFA-METER\r\n\r\n1-0:1.8.0(000671.578*kWh)\r\n1-0:2.8.0(000842.472*kWh)\r\n1-0:1.7.0(00.333*kW)\r\n1-0:2.7.0(00.444*kW)\r\n!"
-#print(CRC16().calculate(bufferblock)) #399E
+#bufferblock1="/KFM5KAIFA-METER\r\n\r\n1-0:1.8.0(000671.578*kWh)\r\n1-0:2.8.0(000842.472*kWh)\r\n1-0:1.7.0(00.333*kW)\r\n1-0:2.7.0(00.444*kW)\r\n!"
+#print(CRC16().calculate(bufferblock1)) #399E
 
+
+#bufferblock2="/ISk5\2MT382-1000\r\n\r\n1-3:0.2.8(40)0-0:1.0.0(101209113020W)\r\n" \
+       #      "0-0:96.1.1(4B384547303034303436333935353037)\r\n1-0:1.8.1(123456.789*kWh)\r\n1-0:1.8.2(123456.789*kWh)\r\n1-0:2.8.1(123456.789*kWh)\r\n1-0:2.8.2(123456.789*kWh)\r\n" \
+        #     "0-0:96.14.0(0002)\r\n1-0:1.7.0(01.193*kW)\r\n1-0:2.7.0(00.000*kW)\r\n0-0:17.0.0(016.1*kW)\r\n0-0:96.3.10(1)\r\n0-0:96.7.21(00004)\r\n0-0:96.7.9(00002)\r\n1-0:99:97.0(2)(0:96.7.19)(101208152415W)(0000000240*s)(101208151004W)(00000000301*s)1-0:32.32.0(00002)\r\n1-0:52.32.0(00001)\r\n1-0:72:32.0(00000)\r\n1-0:32.36.0(00000)\r\n1-0:52.36.0(00003)\r\n1-0:72.36.0(00000)\r\n0-0:96.13.1(3031203631203831)\r\n0-0:96.13.0(303132333435363738393A3B3C3D3E3F303132333435363738393A3B3C3D3E3F303132333435363738393A3B\r\n3C3D3E3F303132333435363738393A3B3C3D3E3F303132333435363738393A3B3C3D3E3F)\r\n0-1:24.1.0(03)\r\n0-1:96.1.0(3232323241424344313233343536373839)\r\n0-1:24.2.1(101209110000W)(12785.123*m3)\r\n0-1:24.4.0(1)\r\n!"
+#print(CRC16().calculate(bufferblock2))#522B
