@@ -56,9 +56,9 @@ class P1Parser(object):
         self.EnergyProduced = energyCPObjAttr(self.ListofDataValues[1])
         self.PowerConsumed = powerCPObjAttr(self.ListofDataValues[2])
         self.PowerProduced = powerCPObjAttr(self.ListofDataValues[3])
-        json.dumps({"EnergyConsumed": self.EnergyConsumed, "EnergyProduced": self.EnergyProduced,
+        print(json.dumps({"EnergyConsumed": self.EnergyConsumed, "EnergyProduced": self.EnergyProduced,
                     "PowerConsumed": self.PowerConsumed, "PowerProduced": self.PowerProduced}, cls=ObjectEncoder,
-                   indent=2, sort_keys=True)
+                   indent=2, sort_keys=True))
 
     def p1parserscanner(self, c):
         if c == ':':
@@ -287,15 +287,19 @@ class P1Parser(object):
                 if newChar == "\n":
                     if self.CRCLen == 0:
                         self.CRC_is_OK = True
-                elif self.CRCLen == 4:
+                    elif self.CRCLen == 4:
                     # case 8
-                    ReturnCRCValue = self.frominttostringofhex(CRC16().calculate(self.bufferBlock))
-                    if (ReturnCRCValue == self.bufferCRC):
-                        self.CRC_is_OK = True
+                        #self.bufferBlock= self.bufferBlock + "\r\n"
+                        ReturnCRCValue = self.frominttostringofhex(CRC16().calculate(self.bufferBlock))
+                        if (len(ReturnCRCValue) == 3):
+                            ReturnCRCValue = "0" + ReturnCRCValue
+                        if (ReturnCRCValue == self.bufferCRC):
+                            print("ReturnCRCValue == self.bufferCRC")
+                            self.CRC_is_OK = True
 
                 if (self.CRC_is_OK == False):
                     self.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
-        else:
+        else: #else of for loop
             # print("Im out of for")
             self.extractvalues(bufferData)
 
