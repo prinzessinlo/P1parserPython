@@ -179,7 +179,7 @@ class P1ParserTest(unittest.TestCase):
 
     #---------------------------------------------------------
 
-    def test_IfCRCvalueCalculatedSameAsTheoneinTelegram(self):
+    def test_IfCRCvalueCalculatedSameAsTheOneInTelegram(self):
         parser = P1Parser()
         parser.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
         parser.telegram = "/KFM5KAIFA-METER\r\n\r\n1-0:1.8.0(000671.578*kWh)\r\n1-0:2.8.0(000842.472*kWh)\r\n1-0:1.7.0(00.333*kW)\r\n1-0:2.7.0(00.444*kW)\r\n!E52C\r\n"
@@ -190,6 +190,34 @@ class P1ParserTest(unittest.TestCase):
         #self.assertEqual(ReturnedValue, "E52C")
         if (ReturnedValue == parser.bufferCRC):
             self.assertTrue(parser.CRC_is_OK)
+
+    def test_IfBufferBlockIsNotEmpty(self):
+        file = FileReader()
+        file.TelegramfileReading("C:\\Users\Amel\Documents\TWINGZ\P1ParserPython\MeterTelegram.txt")
+        parser = P1Parser()  # one object from p1parserclass
+        localtelegram = file.telegram
+        parser.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+        parser.P1Parser_Receive_char(localtelegram)
+        self.assertNotEqual(parser.bufferBlock, "")
+
+
+    def test_RejectIfTelegramIsNotValid(self):
+        file = FileReader()
+        file.TelegramfileReading("C:\\Users\Amel\Documents\TWINGZ\P1ParserPython\\NotValidTelegram.txt")
+        parser = P1Parser()  # one object from p1parserclass
+        localtelegram = file.telegram
+        parser.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+        parser.P1Parser_Receive_char(localtelegram)
+        self.assertNotEqual(parser.bufferBlock, "")
+        self.assertNotEqual("PARSER_LOOKING_FOR_LF", parser.temporarystate)
+
+
+    def test_RejectIfItsNotAValidTelegram(self):
+        parser = P1Parser()
+        parser.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+        parser.telegram = "/FM5KAIFA-METER\r\n\r\n1-0:1.8.0(000671.578*kWh)\r\n1-0:2.8.0(000842.472*kWh)\r\n1-0:1.7.0(00.333*kW)\r\n1-0:2.7.0(00.444*kW)\r\n!E52C\r\n"
+        parser.P1Parser_Receive_char(parser.telegram)
+        self.assertEqual(parser.temporarystate, "PARSER_LOOKING_FOR_BEGIN")
 
 
     def test_ParserReadingFromMeterTelegramtxtAndCheckCRC(self):
@@ -204,8 +232,6 @@ class P1ParserTest(unittest.TestCase):
             if (len(ReturnedValue) == 3):
                 ReturnedValue = "0" + ReturnedValue
             self.assertEqual(ReturnedValue, parser.bufferCRC)
-            #print("returned ", ReturnedValue)
-            #print("buffer crc" , parser.bufferCRC)
 
 
     def test_ParserReadingFromExample1(self):
@@ -387,3 +413,5 @@ class P1ParserTest(unittest.TestCase):
                 #print("test10", parser.bufferCRC)
         else:
             print("file is empty! ")
+
+
