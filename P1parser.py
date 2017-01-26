@@ -9,14 +9,17 @@ from p1parserclass import *
 #-------------------------------------------
 
 #instanciate from fileReaderClass, one object called file:
-file= FileReader("C:\\Users\Amel\Documents\TWINGZ\P1ParserPython\MeterTelegram.txt")
-file.TelegramfileReading()
+file= FileReader()
+file.TelegramfileReading("C:\\Users\Amel\Documents\TWINGZ\P1ParserPython\MeterTelegram.txt")
 parser = P1Parser()  #one object from p1parserclass
 telegram=file.telegram
 bufferblock = telegram.split("!")
 telegram= bufferblock[0] + "!" + "\r\n"
 #print ("Telegram in the file\r\n", telegram)
 #print(CRC16().calculate(telegram)) #58668= 0xE52C
+
+
+print(Parserstates.PARSER_LOOKING_FOR_BEGIN.name)
 
 if (isinstance(file.telegram, str)):
     parser.P1Parser_Receive_char(file.telegram)

@@ -1,6 +1,6 @@
 # type in the cmd line :>> easy_install PyCRC to add the lib package to python doc
 from PyCRC.CRC16 import CRC16
-
+from enum import Enum
 from objectencoder import *
 
 
@@ -14,6 +14,24 @@ class powerCPObjAttr(object):
     def __init__(self, power):
         self.value = str(power)
         self.unit = "kWh"
+
+class Parserstates(Enum):
+    PARSER_LOOKING_FOR_BEGIN = 1
+    PARSER_LOOKING_FOR_LETTER1 = 2
+    PARSER_LOOKING_FOR_LETTER2 = 3
+    PARSER_LOOKING_FOR_LETTER3 = 4
+    PARSER_LOOKING_FOR_NUMBER = 5
+    PARSER_LOOKING_FOR_CR1 = 6
+    PARSER_LOOKING_FOR_LF1 = 7
+    PARSER_LOOKING_FOR_CR2 = 8
+    PARSER_LOOKING_FOR_LF2 = 9
+    PARSER_LOOKING_FOR_DATAGeneral = 10
+    PARSER_LOOKING_FOR_ENDOFBLOC = 11
+    PARSER_LOOKING_FOR_CRC = 12
+    PARSER_LOOKING_FOR_CR = 13
+    PARSER_LOOKING_FOR_LF = 14
+
+
 
 
 class P1Parser(object):
@@ -56,9 +74,9 @@ class P1Parser(object):
         self.EnergyProduced = energyCPObjAttr(self.ListofDataValues[1])
         self.PowerConsumed = powerCPObjAttr(self.ListofDataValues[2])
         self.PowerProduced = powerCPObjAttr(self.ListofDataValues[3])
-        print(json.dumps({"EnergyConsumed": self.EnergyConsumed, "EnergyProduced": self.EnergyProduced,
+        json.dumps({"EnergyConsumed": self.EnergyConsumed, "EnergyProduced": self.EnergyProduced,
                     "PowerConsumed": self.PowerConsumed, "PowerProduced": self.PowerProduced}, cls=ObjectEncoder,
-                   indent=2, sort_keys=True))
+                   indent=2, sort_keys=True)
 
     def p1parserscanner(self, c):
         if c == ':':
