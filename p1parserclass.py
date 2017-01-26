@@ -36,14 +36,8 @@ class Parserstates(Enum):
 
 class P1Parser(object):
     def __init__(self):  # Notre méthode constructeur
-        self.Parserstates = {"PARSER_LOOKING_FOR_BEGIN", "PARSER_LOOKING_FOR_LETTER1", "PARSER_LOOKING_FOR_LETTER2",
-                             "PARSER_LOOKING_FOR_LETTER3", "PARSER_LOOKING_FOR_NUMBER", "PARSER_LOOKING_FOR_CR1",
-                             "PARSER_LOOKING_FOR_LF1",
-                             "PARSER_LOOKING_FOR_CR2", "PARSER_LOOKING_FOR_LF2", "PARSER_LOOKING_FOR_DATAGeneral",
-                             "PARSER_LOOKING_FOR_ENDOFBLOC",
-                             "PARSER_LOOKING_FOR_CRC", "PARSER_LOOKING_FOR_CR", "PARSER_LOOKING_FOR_LF"}
 
-        self.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+        self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
         self.ListofDataValues = [0, 0, 0, 0]
         self.type = 0
         self.value = 0
@@ -164,54 +158,54 @@ class P1Parser(object):
         CRC_is_OK = False
         for letter in telegramBeforeValidation:
             newChar = letter
-            if self.temporarystate == "PARSER_LOOKING_FOR_BEGIN":
+            if self.temporarystate == Parserstates.PARSER_LOOKING_FOR_BEGIN.name:
                 if (newChar == '/'):
                     self.BlockIdx = 0
                     self.bufferBlock = self.bufferBlock + newChar
                     self.BlockIdx = self.BlockIdx + 1  # we store value into buffer block for CRC verification
-                    self.temporarystate = "PARSER_LOOKING_FOR_LETTER1"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_LETTER1.name
 
                 else:
-                    self.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
 
-            elif "PARSER_LOOKING_FOR_LETTER1" == self.temporarystate:
+            elif Parserstates.PARSER_LOOKING_FOR_LETTER1.name == self.temporarystate:
                 if newChar.isalpha():
-                    self.temporarystate = "PARSER_LOOKING_FOR_LETTER2"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_LETTER2.name
 
                     self.bufferBlock = self.bufferBlock + newChar
                     self.BlockIdx = self.BlockIdx + 1
                 else:
-                    self.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
-            elif self.temporarystate == "PARSER_LOOKING_FOR_LETTER2":
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
+            elif self.temporarystate == Parserstates.PARSER_LOOKING_FOR_LETTER2.name:
                 if newChar.isalpha():
-                    self.temporarystate = "PARSER_LOOKING_FOR_LETTER3"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_LETTER3.name
 
                     self.bufferBlock = self.bufferBlock + newChar
                     self.BlockIdx = self.BlockIdx + 1
                 else:
-                    self.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
-            elif self.temporarystate == "PARSER_LOOKING_FOR_LETTER3":
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
+            elif self.temporarystate == Parserstates.PARSER_LOOKING_FOR_LETTER3.name:
                 if newChar.isalpha():
-                    self.temporarystate = "PARSER_LOOKING_FOR_NUMBER"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_NUMBER.name
 
                     self.bufferBlock = self.bufferBlock + newChar
                     self.BlockIdx = self.BlockIdx + 1
                 else:
-                    self.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
-            elif self.temporarystate == "PARSER_LOOKING_FOR_NUMBER":
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
+            elif self.temporarystate == Parserstates.PARSER_LOOKING_FOR_NUMBER.name:
                 if newChar.isdigit():
-                    self.temporarystate = "PARSER_LOOKING_FOR_CR1"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_CR1.name
 
                     self.bufferBlock = self.bufferBlock + newChar
                     self.BlockIdx = self.BlockIdx + 1
                 else:
-                    self.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
 
-            elif self.temporarystate == "PARSER_LOOKING_FOR_CR1":
+            elif self.temporarystate == Parserstates.PARSER_LOOKING_FOR_CR1.name:
                 if newChar == "\r":  # if we receive \r
                     self.bufferBlock = self.bufferBlock + newChar
                     self.BlockIdx = self.BlockIdx + 1
-                    self.temporarystate = "PARSER_LOOKING_FOR_LF1"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_LF1.name
 
                 elif (IDidx <= 1024):  # and (P1P_IsPrintableChar(newChar)))
                     # We don't know the exact length of ID but we know Data bloc can be up to 1024characters
@@ -219,36 +213,36 @@ class P1Parser(object):
                     self.BlockIdx = self.BlockIdx + 1
                     IDidx = IDidx + 1
                 else:
-                    self.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
 
-            elif self.temporarystate == "PARSER_LOOKING_FOR_LF1":
+            elif self.temporarystate == Parserstates.PARSER_LOOKING_FOR_LF1.name:
                 if (newChar == "\n"):
                     self.bufferBlock = self.bufferBlock + newChar
                     self.BlockIdx = self.BlockIdx + 1
-                    self.temporarystate = "PARSER_LOOKING_FOR_CR2"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_CR2.name
 
                 else:
-                    self.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
 
-            elif self.temporarystate == "PARSER_LOOKING_FOR_CR2":
+            elif self.temporarystate == Parserstates.PARSER_LOOKING_FOR_CR2.name:
                 if newChar == "\r":  # if we receive \r
                     self.bufferBlock = self.bufferBlock + newChar
                     self.BlockIdx = self.BlockIdx + 1
-                    self.temporarystate = "PARSER_LOOKING_FOR_LF2"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_LF2.name
                 else:
-                    self.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
-            elif self.temporarystate == "PARSER_LOOKING_FOR_LF2":
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
+            elif self.temporarystate == Parserstates.PARSER_LOOKING_FOR_LF2.name:
                 if (newChar == "\n"):
                     self.bufferBlock = self.bufferBlock + newChar
                     self.BlockIdx = self.BlockIdx + 1
-                    self.temporarystate = "PARSER_LOOKING_FOR_DATAGeneral"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_DATAGeneral.name
 
                 else:
-                    self.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
-            elif self.temporarystate == "PARSER_LOOKING_FOR_DATAGeneral":
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
+            elif self.temporarystate == Parserstates.PARSER_LOOKING_FOR_DATAGeneral.name:
                 # case 1
                 if newChar == "\0":
-                    self.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
                 # case 2
                 elif newChar != "!":  # 0x21="!"
                     # fixme if data is more than the length of the buffer#
@@ -259,49 +253,49 @@ class P1Parser(object):
                 # case 3
                 elif ((newChar == "!") and (self.DataIdx == 0)):
                     # if we receive ! & no data we should again to begin
-                    self.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
                 # case 4
                 elif (newChar == "!" and self.DataIdx > 0):
-                    self.temporarystate = "PARSER_LOOKING_FOR_ENDOFBLOC"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_ENDOFBLOC.name
 
                     self.bufferBlock = self.bufferBlock + newChar
                     self.BlockIdx = self.BlockIdx + 1
                 else:
-                    self.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
 
-            elif self.temporarystate == "PARSER_LOOKING_FOR_ENDOFBLOC":
+            elif self.temporarystate == Parserstates.PARSER_LOOKING_FOR_ENDOFBLOC.name:
                 #case 5
                 if newChar.isalnum():
                     self.CRCLen = 1
                     self.bufferCRC = self.bufferCRC + newChar
                     self.BlockIdx = self.BlockIdx + 1
-                    self.temporarystate = "PARSER_LOOKING_FOR_CRC"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_CRC.name
 
                 elif newChar == "\r":
-                    self.temporarystate = "PARSER_LOOKING_FOR_LF"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_LF.name
 
                 else:
-                    self.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
 
-            elif self.temporarystate == "PARSER_LOOKING_FOR_CRC":
+            elif self.temporarystate == Parserstates.PARSER_LOOKING_FOR_CRC.name:
                 if newChar.isalnum():
                     if self.CRCLen <= 4:
                         self.bufferCRC = self.bufferCRC + newChar
                         self.CRCLen = self.CRCLen + 1
                     if self.CRCLen == CRC:
-                        self.temporarystate = "PARSER_LOOKING_FOR_CR"
+                        self.temporarystate = Parserstates.PARSER_LOOKING_FOR_CR.name
 
                 else:
-                    self.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
             #case 6
-            elif self.temporarystate == "PARSER_LOOKING_FOR_CR":
+            elif self.temporarystate == Parserstates.PARSER_LOOKING_FOR_CR.name:
                 if newChar == "\r":  # if we receive \r
-                    self.temporarystate = "PARSER_LOOKING_FOR_LF"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_LF.name
 
                 else:
-                    self.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
             # case 7
-            elif self.temporarystate == "PARSER_LOOKING_FOR_LF":
+            elif self.temporarystate == Parserstates.PARSER_LOOKING_FOR_LF.name:
                 if newChar == "\n":
                     if self.CRCLen == 0:
                         self.CRC_is_OK = True
@@ -315,7 +309,7 @@ class P1Parser(object):
                             self.CRC_is_OK = True
 
                 if (self.CRC_is_OK == False):
-                    self.temporarystate = "PARSER_LOOKING_FOR_BEGIN"
+                    self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
         else: #else of for loop
             # print("Im out of for")
             self.extractvalues(bufferData)
