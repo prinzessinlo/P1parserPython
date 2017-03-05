@@ -18,6 +18,6 @@ telegram= bufferblock[0] + "!" + "\r\n"
 
 
 if (isinstance(file.telegram, str)):
-    parser.p1parser_receive_char(file.telegram)
-    parser.converttojson()
+    parser.p1parser_receive_telegram(file.telegram)
+    print(parser.converttojson())
     print("Well done converted to json format")
