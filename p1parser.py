@@ -1,20 +1,21 @@
 # type in the cmd line :>> easy_install PyCRC to add the lib package to python doc
-from PyCRC.CRC16 import CRC16
+from PyCRC.CRC16 import CRC16 #for the CRC calculation and check
 from enum import Enum
-from objectencoder import *
+from objectencoder import * #for json.dumps function call Serialize obj to a JSON
 
-
-class energyCPObjAttr(object):
+#Prepare the object for energy format containing value & unit
+class energyCPObjAttr(object): #Class naming use the CapWords convention
     def __init__(self, energy):
         self.value = str(energy)
         self.unit = "kWh"
 
-
+#Prepare the object for power format containing value & unit
 class powerCPObjAttr(object):
     def __init__(self, power):
         self.value = str(power)
-        self.unit = "kWh"
+        self.unit = "kW"
 
+#Set the list of state as an enum
 class Parserstates(Enum):
     PARSER_LOOKING_FOR_BEGIN = 1
     PARSER_LOOKING_FOR_LETTER1 = 2
@@ -35,8 +36,7 @@ class Parserstates(Enum):
 
 
 class P1Parser(object):
-    def __init__(self):  # Notre méthode constructeur
-
+    def __init__(self):  # Constructor for p1parser class
         self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
         self.ListofDataValues = [0, 0, 0, 0]
         self.type = 0
@@ -46,6 +46,7 @@ class P1Parser(object):
         self.ColonSeen = False
         self.StarSeen = False
         #added for unittest
+        self.CIsDigit= False
         self.CRC_is_OK = False
         self.BlockIdx = 0
         self.DataIdx = 0
@@ -62,8 +63,10 @@ class P1Parser(object):
 
     def __getattr__(self, ListofDataValues):
         return self.ListofDataValues
-
+    #Establish json format supposed to deliver
     def converttojson(self):
+    #Function names should be lowercase, with words separated by underscores
+    #as necessary to improve readability.
         self.EnergyConsumed = energyCPObjAttr(self.ListofDataValues[0])
         self.EnergyProduced = energyCPObjAttr(self.ListofDataValues[1])
         self.PowerConsumed = powerCPObjAttr(self.ListofDataValues[2])
@@ -72,6 +75,7 @@ class P1Parser(object):
                     "PowerConsumed": self.PowerConsumed, "PowerProduced": self.PowerProduced}, cls=ObjectEncoder,
                    indent=2, sort_keys=True)
 
+    #
     def p1parserscanner(self, c):
         if c == ':':
             self.type = 0
@@ -95,9 +99,14 @@ class P1Parser(object):
             return 0
         elif c == '*':
             self.StarSeen = True
-        elif c.isdigit() and ((self.ParenthesisSeen == True) or (self.ColonSeen == True) or (self.DotSeen == True)):
-            b = int(float(c))
-            self.value = 10 * self.value + b
+        elif (self.ParenthesisSeen == True) or (self.ColonSeen == True) or (self.DotSeen == True):
+            if c.isdigit():
+                self.CIsDigit = True
+                b = int(float(c))
+                self.value = 10 * self.value + b
+            else:
+                self.CIsDigit= False
+
         elif c.isalpha and not self.StarSeen:
             self.value = 0
             self.ParenthesisSeen = False
@@ -113,29 +122,30 @@ class P1Parser(object):
         return 0
 
     # =======================================
-    def P1P_GetValue(self):
+    #return the value if it's valid
+    def p1p_getvalue(self):
         if (self.type >= 100) and (self.type <= 999):
             return self.value
         else:
             return 0
         # =======================================
-
-    def P1P_GetType(self):
+    #return the type if it's valid
+    def p1p_gettype(self):
         if (self.type >= 100) and (self.type <= 999):
             return self.type
         else:
             return 0  # non valid type
             # ==========================================
 
-    def extractvalues(self, data):
+    def returnmetervaluesintoalist(self, data):
         meterValue = 0
         meterType = 0
         global a, b, c, d
         for letter in data:
             if self.p1parserscanner(letter):
                 # print("Je suis là!")
-                meterType = self.P1P_GetType()
-                meterValue = self.P1P_GetValue()
+                meterType = self.p1p_gettype()
+                meterValue = self.p1p_getvalue()
                 if meterType == 180:
                     self.ListofDataValues[0] = meterValue  # energyConsumed
                 elif meterType == 280:
@@ -147,7 +157,10 @@ class P1Parser(object):
 
                     # ==========================================
 
-    def P1Parser_Receive_char(self, telegramBeforeValidation):
+    def p1parser_receive_telegram(self, telegramBeforeValidation):
+       return 0
+
+    def p1parser_receive_char(self, telegramBeforeValidation):
 
         newChar = '/'
 
@@ -312,7 +325,7 @@ class P1Parser(object):
                     self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
         else: #else of for loop
             # print("Im out of for")
-            self.extractvalues(bufferData)
+            self.returnmetervaluesintoalist(bufferData)
 
             # print("cEnergy: ", self.ListofDataValues[0])
             # print("pEnergy: ", self.ListofDataValues[1])
@@ -321,6 +334,8 @@ class P1Parser(object):
 
     def frominttostringofhex(self, ReturnCRCValue):
         b = str(hex(ReturnCRCValue))
-        # splitted = b.split("0x")
+        #Split the returned value from CRC16 calculation method.
+        #Remove 0x from the CRC
+        #To compare the calculated right value and the value in the telegram
         CRCUppercase = (b.split("0x"))[1].upper()
         return CRCUppercase

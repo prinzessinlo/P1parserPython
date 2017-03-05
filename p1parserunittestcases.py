@@ -1,10 +1,29 @@
 import unittest
-
 import random
 from p1parser import *
 from filereader import *
-import io
 
+
+class P1returnmetervalueTest(unittest.TestCase):
+
+
+    def test_IfReturningRightTypeAndValue(self):
+        parser = P1Parser()
+        parser.returnmetervaluesintoalist("1-0:1.8.3(000666.666*kWh)")
+        type= parser.p1p_gettype()
+        self.assertEqual(type, 183)
+        value = parser.p1p_getvalue()
+        self.assertEqual(value, 666666)
+
+    def test_IfFulfillingListOfValuewithWishedValues(self):
+        parser = P1Parser()
+        input= "1-0:1.8.0(000671.578*kWh)\r\n1-0:2.8.0(000842.472*kWh)\r\n1-0:1.7.0(00.333*kW)\r\n1-0:2.7.0(00.444*kW)\r\n"
+        #we just give data(databuffer) to the method returnmetervaluesintoalist
+        parser.returnmetervaluesintoalist(input)
+        self.assertEqual(parser.ListofDataValues[0], 671578)
+        self.assertEqual(parser.ListofDataValues[1], 842472)
+        self.assertEqual(parser.ListofDataValues[2], 333)
+        self.assertEqual(parser.ListofDataValues[3], 444)
 
 class P1ScannerTest(unittest.TestCase):  # use the CapWords convention
 
@@ -76,7 +95,6 @@ class P1ScannerTest(unittest.TestCase):  # use the CapWords convention
         c = ";"
         parser.p1parserscanner(c)
         self.assertFalse(parser.DotSeen)
-
 
 class P1ParserTest(unittest.TestCase):
     def test_choice(self):
@@ -481,8 +499,6 @@ class P1ParserTest(unittest.TestCase):
                 #print("test10", parser.bufferCRC)
         else:
             print("file is empty! ")
-
-
 
 
 if __name__ == '__main__':
