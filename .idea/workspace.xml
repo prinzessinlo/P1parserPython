@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a5bf481d-072c-46e5-9caf-89af89469a39" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/P1parser.py" afterPath="$PROJECT_DIR$/P1parser.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/p1parser.py" afterPath="$PROJECT_DIR$/p1parser.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/p1parsermain.py" afterPath="$PROJECT_DIR$/p1parsermain.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/p1parserunittestcases.py" afterPath="$PROJECT_DIR$/p1parserunittestcases.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,99 +17,79 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="MeterTelegram.txt" pinned="true" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/MeterTelegram.txt">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="132">
-                    <caret line="4" column="10" lean-forward="false" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="P1ParserPython" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="P1parser.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/P1parser.py">
+      <file leaf-file-name="p1parsermain.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/p1parsermain.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1231">
-              <caret line="152" column="0" lean-forward="false" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="unittest_basic.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/unittest_basic.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="statemachine.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/statemachine.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExtractValues.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ExtractValues.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="P1scanner.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/P1scanner.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_extractvalues.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test_extractvalues.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state relative-caret-position="234">
+              <caret line="13" column="16" lean-forward="true" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
               <folding>
-                <element signature="e#0#29#0" expanded="true" />
+                <element signature="e#21#45#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_p1parserscanner.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test_p1parserscanner.py">
+      <file leaf-file-name="NotValidTelegram.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NotValidTelegram.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="objectencoder.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/objectencoder.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="38" />
               <folding>
-                <element signature="e#0#29#0" expanded="true" />
+                <element signature="e#0#11#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="p1parser.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/p1parser.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="6084">
+              <caret line="338" column="76" lean-forward="false" selection-start-line="338" selection-start-column="76" selection-end-line="338" selection-end-column="76" />
+              <folding>
+                <element signature="e#83#147#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="p1parserunittestcases.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/p1parserunittestcases.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="97" column="0" lean-forward="true" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#135#1007#0" expanded="false" />
+                <element signature="e#1086#3245#0" expanded="false" />
+                <element signature="e#3290#22934#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="provTelegram.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/provTelegram.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-412">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -121,6 +103,12 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>energyCPObjAttr</find>
+      <find>frominttostringofhex</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -129,18 +117,27 @@
       <list>
         <option value="$PROJECT_DIR$/ExtractValues.py" />
         <option value="$PROJECT_DIR$/P1scanner.py" />
-        <option value="$PROJECT_DIR$/unittest_basic.py" />
         <option value="$PROJECT_DIR$/test_extractvalues.py" />
         <option value="$PROJECT_DIR$/test_p1parserscanner.py" />
         <option value="$PROJECT_DIR$/statemachine.py" />
         <option value="$PROJECT_DIR$/P1parser.py" />
+        <option value="$PROJECT_DIR$/p1scannertest.py" />
+        <option value="$PROJECT_DIR$/test/unittest_basic.py" />
+        <option value="$PROJECT_DIR$/unittest_basic.py" />
+        <option value="$PROJECT_DIR$/p1parsertest.py" />
+        <option value="$PROJECT_DIR$/mytestrunningfile.py" />
+        <option value="$PROJECT_DIR$/testingtest.py" />
+        <option value="$PROJECT_DIR$/p1parsertestcases.py" />
+        <option value="$PROJECT_DIR$/p1parser.py" />
+        <option value="$PROJECT_DIR$/p1parserunittestcases.py" />
+        <option value="$PROJECT_DIR$/p1parsermain.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-12" />
-    <option name="width" value="3612" />
-    <option name="height" value="2172" />
+    <option name="x" value="-5" />
+    <option name="width" value="1378" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -176,6 +173,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -190,16 +189,19 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Amel\Documents\TWINGZ\P1ParserPython" />
+      <recent name="C:\Users\Amel\Documents\TWINGZ\P1ParserPython\test" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.P1parser">
+  <component name="RunManager" selected="Python.p1parserunittestcases">
     <configuration default="false" name="P1parser" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -212,7 +214,41 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="P1ParserPython" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/P1parser.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/p1parsermain.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="unittest_basic" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="P1ParserPython" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/unittest_basic.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="p1parserunittestcases" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="P1ParserPython" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/p1parserunittestcases.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -373,14 +409,18 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="2">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Python.P1parser" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in P1ParserPython" />
+      <item index="1" class="java.lang.String" itemvalue="Python.unittest_basic" />
+      <item index="2" class="java.lang.String" itemvalue="Python.p1parserunittestcases" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in P1ParserPython" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Python.P1parser" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in P1ParserPython" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Python.p1parserunittestcases" />
+        <item index="1" class="java.lang.String" itemvalue="Python.unittest_basic" />
+        <item index="2" class="java.lang.String" itemvalue="Python.P1parser" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in P1ParserPython" />
       </list>
     </recent_temporary>
   </component>
@@ -398,35 +438,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_P1ParserPython - 2017.01.04 at 13h 18m 36s.xml">
+    <history-entry file="Unittests_in_P1ParserPython - 2017.03.03 at 17h 39m 20s.xml">
       <configuration name="Unittests in P1ParserPython" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_P1ParserPython - 2017.01.04 at 13h 19m 03s.xml">
+    <history-entry file="Unittests_in_P1ParserPython - 2017.03.05 at 13h 55m 19s.xml">
       <configuration name="Unittests in P1ParserPython" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_P1ParserPython - 2017.01.04 at 13h 19m 25s.xml">
+    <history-entry file="Unittests_in_P1ParserPython - 2017.03.05 at 15h 21m 53s.xml">
       <configuration name="Unittests in P1ParserPython" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_P1ParserPython - 2017.01.04 at 13h 19m 49s.xml">
+    <history-entry file="Unittests_in_P1ParserPython - 2017.03.05 at 15h 21m 54s.xml">
       <configuration name="Unittests in P1ParserPython" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_P1ParserPython - 2017.01.04 at 13h 20m 27s.xml">
+    <history-entry file="Unittests_in_P1ParserPython - 2017.03.05 at 15h 22m 07s.xml">
       <configuration name="Unittests in P1ParserPython" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_P1ParserPython - 2017.01.04 at 13h 20m 49s.xml">
+    <history-entry file="Unittests_in_P1ParserPython - 2017.03.05 at 16h 14m 21s.xml">
       <configuration name="Unittests in P1ParserPython" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_P1ParserPython - 2017.01.04 at 13h 21m 00s.xml">
-      <configuration name="Unittests in P1ParserPython" configurationId="tests" />
+    <history-entry file="Unittests_in_test - 2017.03.05 at 13h 46m 28s.xml">
+      <configuration name="Unittests in test" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_P1ParserPython - 2017.01.04 at 13h 21m 36s.xml">
-      <configuration name="Unittests in P1ParserPython" configurationId="tests" />
+    <history-entry file="Unittests_in_test - 2017.03.05 at 13h 46m 33s.xml">
+      <configuration name="Unittests in test" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_P1ParserPython - 2017.01.05 at 12h 20m 35s.xml">
-      <configuration name="Unittests in P1ParserPython" configurationId="tests" />
+    <history-entry file="Unittests_in_test - 2017.03.05 at 13h 46m 34s.xml">
+      <configuration name="Unittests in test" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_P1ParserPython - 2017.01.05 at 15h 11m 24s.xml">
-      <configuration name="Unittests in P1ParserPython" configurationId="tests" />
+    <history-entry file="Unnamed - 2017.03.05 at 15h 17m 29s.xml">
+      <configuration name="Unnamed" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -439,25 +479,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-12" y="0" width="3612" height="2172" extended-state="0" />
-    <editor active="false" />
+    <frame x="-5" y="0" width="1378" height="735" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10291595" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32996812" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12822458" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.4969651" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32996812" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.4969651" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2638889" sideWeight="0.4969651" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32996812" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40845823" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2837633" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32996812" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4488279" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3298611" sideWeight="0.5030349" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32996812" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -492,161 +532,41 @@
           <option name="timeStamp" value="121" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/P1parser.py</url>
-          <line>266</line>
-          <option name="timeStamp" value="130" />
+          <url>file://$PROJECT_DIR$/p1parsermain.py</url>
+          <line>1</line>
+          <option name="timeStamp" value="150" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/P1parser.py</url>
-          <line>277</line>
-          <option name="timeStamp" value="133" />
+          <url>file://$PROJECT_DIR$/p1parsermain.py</url>
+          <line>16</line>
+          <option name="timeStamp" value="152" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/P1parser.py</url>
-          <line>201</line>
-          <option name="timeStamp" value="146" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/P1parser.py</url>
-          <line>206</line>
-          <option name="timeStamp" value="148" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/P1parser.py</url>
-          <line>196</line>
-          <option name="timeStamp" value="149" />
+          <url>file://$PROJECT_DIR$/p1parserunittestcases.py</url>
+          <line>6</line>
+          <option name="timeStamp" value="153" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="150" />
+      <option name="time" value="154" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/P1scanner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="16" lean-forward="true" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MeterTelegram.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_extractvalues.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_p1parserscanner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/P1parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3168">
-          <caret line="96" column="27" lean-forward="false" selection-start-line="96" selection-start-column="11" selection-end-line="96" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/unittest_basic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/statemachine.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ExtractValues.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/P1scanner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="20" column="17" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MeterTelegram.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_extractvalues.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_p1parserscanner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="17" column="23" lean-forward="false" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/P1parser.py">
+    <entry file="file://$PROJECT_DIR$/test_p1parserscanner.py" />
+    <entry file="file://$PROJECT_DIR$/p1parsermain.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1452">
           <caret line="44" column="17" lean-forward="false" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_extractvalues.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
           <folding>
-            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#21#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test_extractvalues.py" />
     <entry file="file://$PROJECT_DIR$/unittest_basic.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -655,30 +575,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/statemachine.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ExtractValues.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/P1scanner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="20" column="17" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/statemachine.py" />
+    <entry file="file://$PROJECT_DIR$/ExtractValues.py" />
+    <entry file="file://$PROJECT_DIR$/P1scanner.py" />
     <entry file="file://$PROJECT_DIR$/MeterTelegram.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -687,21 +586,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_p1parserscanner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/P1parser.py">
+    <entry file="file://$PROJECT_DIR$/test_p1parserscanner.py" />
+    <entry file="file://$PROJECT_DIR$/p1parsermain.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="726">
           <caret line="22" column="19" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="19" />
-          <folding />
+          <folding>
+            <element signature="e#21#45#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -713,30 +605,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/statemachine.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ExtractValues.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/P1scanner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="20" column="17" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/statemachine.py" />
+    <entry file="file://$PROJECT_DIR$/ExtractValues.py" />
+    <entry file="file://$PROJECT_DIR$/P1scanner.py" />
     <entry file="file://$PROJECT_DIR$/MeterTelegram.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -745,126 +616,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/P1parser.py">
+    <entry file="file://$PROJECT_DIR$/p1parsermain.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#21#45#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ExtractValues.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/P1scanner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="34" column="38" lean-forward="false" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/P1parser.py">
+    <entry file="file://$PROJECT_DIR$/ExtractValues.py" />
+    <entry file="file://$PROJECT_DIR$/P1scanner.py" />
+    <entry file="file://$PROJECT_DIR$/p1parsermain.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#21#45#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ExtractValues.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/P1scanner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="34" column="38" lean-forward="false" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/P1parser.py">
+    <entry file="file://$PROJECT_DIR$/ExtractValues.py" />
+    <entry file="file://$PROJECT_DIR$/P1scanner.py" />
+    <entry file="file://$PROJECT_DIR$/p1parsermain.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#21#45#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ExtractValues.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/P1scanner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="34" column="38" lean-forward="false" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/P1parser.py">
+    <entry file="file://$PROJECT_DIR$/ExtractValues.py" />
+    <entry file="file://$PROJECT_DIR$/P1scanner.py" />
+    <entry file="file://$PROJECT_DIR$/p1parsermain.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#21#45#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ExtractValues.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/P1scanner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="34" column="38" lean-forward="true" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/P1parser.py">
+    <entry file="file://$PROJECT_DIR$/ExtractValues.py" />
+    <entry file="file://$PROJECT_DIR$/P1scanner.py" />
+    <entry file="file://$PROJECT_DIR$/p1parsermain.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#21#45#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ExtractValues.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="23" lean-forward="false" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/P1scanner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="14" column="16" lean-forward="true" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ExtractValues.py" />
+    <entry file="file://$PROJECT_DIR$/P1scanner.py" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -872,32 +683,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ExtractValues.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/statemachine.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_extractvalues.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ExtractValues.py" />
+    <entry file="file://$PROJECT_DIR$/statemachine.py" />
+    <entry file="file://$PROJECT_DIR$/test_extractvalues.py" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -905,45 +693,128 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/P1scanner.py" />
+    <entry file="file://$PROJECT_DIR$/test_p1parserscanner.py" />
+    <entry file="file://$PROJECT_DIR$/MeterTelegram.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filereader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="38" lean-forward="false" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/p1parsertest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7434">
+          <caret line="413" column="0" lean-forward="true" selection-start-line="413" selection-start-column="0" selection-end-line="413" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/p1scannertest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="75" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/p1parsertestcases.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="402" column="36" lean-forward="false" selection-start-line="402" selection-start-column="36" selection-end-line="402" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/p1parserreturnmetervalues.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="23" column="57" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="23" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/provTelegram.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-412">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/unittest_basic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+        <state relative-caret-position="18">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/P1scanner.py">
+    <entry file="file://$PROJECT_DIR$/NotValidTelegram.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="20" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_p1parserscanner.py">
+    <entry file="file://$PROJECT_DIR$/objectencoder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="38" />
           <folding>
-            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MeterTelegram.txt">
+    <entry file="file://$PROJECT_DIR$/mytestrunningfile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="4" column="10" lean-forward="false" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/P1parser.py">
+    <entry file="file://$PROJECT_DIR$/p1parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1231">
-          <caret line="152" column="0" lean-forward="false" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="6084">
+          <caret line="338" column="76" lean-forward="false" selection-start-line="338" selection-start-column="76" selection-end-line="338" selection-end-column="76" />
+          <folding>
+            <element signature="e#83#147#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/p1parsermain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="16" lean-forward="true" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+          <folding>
+            <element signature="e#21#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/p1parserunittestcases.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="97" column="0" lean-forward="true" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#135#1007#0" expanded="false" />
+            <element signature="e#1086#3245#0" expanded="false" />
+            <element signature="e#3290#22934#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
