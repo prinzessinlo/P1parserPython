@@ -1,40 +1,108 @@
-import random
-from p1parserclass import *
 import unittest
-from readfile import *
+
+import random
+from p1parser import *
+from filereader import *
 import io
 
 
+class P1ScannerTest(unittest.TestCase):  # use the CapWords convention
+
+
+    def test_IfCharisColon(self):
+        parser = P1Parser()
+        parser.p1parserscanner(":")
+        self.assertEqual(parser.type,0)
+        self.assertEqual(parser.value, 0)
+        self.assertTrue(parser.ColonSeen)
+
+    def test_IfCharisOpenParenthesis(self):
+        parser = P1Parser()
+        parser.p1parserscanner("(")
+        self.assertEqual(parser.type,0)
+        self.assertEqual(parser.value, 0)
+        if (parser.type==0):
+            self.assertEqual(parser.type, parser.value)
+        self.assertFalse(parser.DotSeen)
+        self.assertFalse(parser.ColonSeen)
+        self.assertTrue(parser.ParenthesisSeen)
+
+    def test_IfCharisPoint(self):
+        parser = P1Parser()
+        parser.p1parserscanner(".")
+        self.assertTrue(parser.Dotseen)
+
+    def test_IfCharisCloseParenthesis(self):
+        parser = P1Parser()
+        parser.DotSeen= True
+        parser.type= 111
+        self.assertTrue(parser.p1parserscanner(")"))
+
+    def test_IfCharisStar(self):
+        parser = P1Parser()
+        parser.p1parserscanner("*")
+        self.assertTrue(parser.StarSeen)
+
+    def test_Returningrighttypeandvalue(self):
+        string= "1-0:1.8.0(000671.578*kWh)"
+        parser = P1Parser()
+        for letter in string:
+            parser.p1parserscanner(letter)
+        self.assertEqual(parser.type, 180)
+        self.assertEqual(parser.value, 671578)
+
+
+    def test_RejectIfCharisOInsteadOf0(self):
+        parser = P1Parser()
+        c="o"
+        parser.ParenthesisSeen = True
+        parser.ColonSeen = True
+        parser.DotSeen = True
+        parser.p1parserscanner(c)
+        self.assertFalse(parser.CIsDigit)
+
+    def test_RejectIfCharisCommaInsteadOfPoint(self):
+        parser = P1Parser()
+        parser.ColonSeen = True
+        #after colonseen the scanner has to wait for .
+        c = ","
+        parser.p1parserscanner(c)
+        self.assertFalse(parser.DotSeen)
+
+    def test_RejectIfCharisSemiColonInsteadOfPoint(self):
+        parser = P1Parser()
+        parser.ColonSeen = True
+        #after colonseen the scanner has to wait for .
+        c = ";"
+        parser.p1parserscanner(c)
+        self.assertFalse(parser.DotSeen)
+
 
 class P1ParserTest(unittest.TestCase):
-
-
     def test_choice(self):
         """Test le fonctionnement de la fonction 'random.choice'."""
         liste = list(range(10))
         elt = random.choice(liste)
         # Vérifie que 'elt' est dans 'liste'
         #self.assertIn(elt, liste)
-
     def test_ParserLookingForLetter1OnSlach(self):
         parser= P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
         parser.telegram="/"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertEqual(Parserstates.PARSER_LOOKING_FOR_LETTER1.name, parser.temporarystate)
-
     def test_ParserLookingForLetter2OnLetter1(self):
         parser= P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
         parser.telegram="/M"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertEqual(Parserstates.PARSER_LOOKING_FOR_LETTER2.name, parser.temporarystate)
 
     def test_ParserLookingForLetter3OnLetter2(self):
         parser= P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
         parser.telegram="/MC"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertEqual(Parserstates.PARSER_LOOKING_FOR_LETTER3.name, parser.temporarystate)
 
 
@@ -42,49 +110,49 @@ class P1ParserTest(unittest.TestCase):
         parser= P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
         parser.telegram="/MMS"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertEqual(Parserstates.PARSER_LOOKING_FOR_NUMBER.name, parser.temporarystate)
 
     def test_ParserLookingForCR1OnNumber(self):
         parser= P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
         parser.telegram="/MMS5"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertEqual(Parserstates.PARSER_LOOKING_FOR_CR1.name, parser.temporarystate)
 
     def test_ParserLookingForLF1OnCR1(self):
         parser= P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
         parser.telegram="/MMS5IDIDID\r"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertEqual(Parserstates.PARSER_LOOKING_FOR_LF1.name, parser.temporarystate)
 
     def test_ParserLookingForCR2OnLF1(self):
         parser= P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
         parser.telegram="/MMS5IDIDID\r\n"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertEqual("PARSER_LOOKING_FOR_CR2", parser.temporarystate)
 
     def test_ParserLookingForLF2OnCR2(self):
         parser= P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
         parser.telegram="/MMS5IDIDID\r\n\r"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertEqual(Parserstates.PARSER_LOOKING_FOR_LF2.name, parser.temporarystate)
 
     def test_ParserLookingForDATAOnLF2(self):
         parser= P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
         parser.telegram="/MMS5IDIDID\r\n\r\n"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertEqual(Parserstates.PARSER_LOOKING_FOR_DATAGeneral.name, parser.temporarystate)
     #case 1
     def test_ParserLookingForBeginOnNOData(self):
         parser= P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
         parser.telegram="/MMS5IDIDID\r\n\r\n\0"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertEqual(Parserstates.PARSER_LOOKING_FOR_BEGIN.name, parser.temporarystate)
 
     #case 2
@@ -93,7 +161,7 @@ class P1ParserTest(unittest.TestCase):
         parser = P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
         parser.telegram = "/MMS5IDIDID\r\n\r\n1-0:0.8.0(00900)"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertGreater(parser.DataIdx, 0)
         self.assertEqual(Parserstates.PARSER_LOOKING_FOR_DATAGeneral.name, parser.temporarystate)
 
@@ -102,7 +170,7 @@ class P1ParserTest(unittest.TestCase):
         parser = P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_DATAGeneral.name
         parser.telegram = "!"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertEqual(Parserstates.PARSER_LOOKING_FOR_BEGIN.name, parser.temporarystate)
 
     # case 4
@@ -110,7 +178,7 @@ class P1ParserTest(unittest.TestCase):
         parser= P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_DATAGeneral.name
         parser.telegram="1-0:0.8.0(00900)\r\n1-0:0.3.1(01000)\r\n!"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertGreater(parser.DataIdx, 0)
         self.assertEqual(Parserstates.PARSER_LOOKING_FOR_ENDOFBLOC.name, parser.temporarystate)
     #No CRC, CRLF at the endoftheblock
@@ -119,7 +187,7 @@ class P1ParserTest(unittest.TestCase):
         parser= P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_ENDOFBLOC.name
         parser.telegram="\r"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertEqual(Parserstates.PARSER_LOOKING_FOR_LF.name, parser.temporarystate)
 
     def test_ParserLookingForLastreturnOnCRLF(self):
@@ -127,7 +195,7 @@ class P1ParserTest(unittest.TestCase):
         parser= P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_ENDOFBLOC.name
         parser.telegram="\r\n"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertTrue(parser.CRC_is_OK)
 
     #We've CRC+CRLF at the endoftheblock
@@ -138,13 +206,13 @@ class P1ParserTest(unittest.TestCase):
         parser= P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_ENDOFBLOC.name
         parser.telegram="A"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertEqual(parser.CRCLen,1)
         self.assertEqual(parser.bufferCRC, "A")
         self.assertEqual(Parserstates.PARSER_LOOKING_FOR_CRC.name, parser.temporarystate)
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_CRC.name
         parser.telegram = "A8B"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertEqual(parser.CRCLen, 4)
         self.assertEqual(parser.bufferCRC, "AA8B")
         self.assertEqual(Parserstates.PARSER_LOOKING_FOR_CR.name, parser.temporarystate)
@@ -157,7 +225,7 @@ class P1ParserTest(unittest.TestCase):
         parser = P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_CR.name
         parser.telegram = "\r"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertEqual(Parserstates.PARSER_LOOKING_FOR_LF.name, parser.temporarystate)
 
     # case 7
@@ -165,7 +233,7 @@ class P1ParserTest(unittest.TestCase):
         parser = P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_CR.name
         parser.telegram = "\r\n"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertTrue(parser.CRC_is_OK)
 
     # case 8
@@ -174,7 +242,7 @@ class P1ParserTest(unittest.TestCase):
         parser = P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
         parser.telegram = "/KFM5KAIFA-METER\r\n\r\n1-0:1.8.0(000671.578*kWh)\r\n1-0:2.8.0(000842.472*kWh)\r\n1-0:1.7.0(00.333*kW)\r\n1-0:2.7.0(00.444*kW)\r\n!E52C\r"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertEqual(Parserstates.PARSER_LOOKING_FOR_LF.name, parser.temporarystate)
 
     #---------------------------------------------------------
@@ -183,7 +251,7 @@ class P1ParserTest(unittest.TestCase):
         parser = P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
         parser.telegram = "/KFM5KAIFA-METER\r\n\r\n1-0:1.8.0(000671.578*kWh)\r\n1-0:2.8.0(000842.472*kWh)\r\n1-0:1.7.0(00.333*kW)\r\n1-0:2.7.0(00.444*kW)\r\n!E52C\r\n"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertEqual(parser.CRCLen, 4)
         #self.assertEqual(parser.bufferCRC, "E52C")
         ReturnedValue= parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
@@ -197,7 +265,7 @@ class P1ParserTest(unittest.TestCase):
         parser = P1Parser()  # one object from p1parserclass
         localtelegram = file.telegram
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
-        parser.P1Parser_Receive_char(localtelegram)
+        parser.p1parser_receive_char(localtelegram)
         self.assertNotEqual(parser.bufferBlock, "")
 
 
@@ -207,7 +275,7 @@ class P1ParserTest(unittest.TestCase):
         parser = P1Parser()  # one object from p1parserclass
         localtelegram = file.telegram
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
-        parser.P1Parser_Receive_char(localtelegram)
+        parser.p1parser_receive_char(localtelegram)
         self.assertNotEqual(parser.bufferBlock, "")
         self.assertNotEqual(Parserstates.PARSER_LOOKING_FOR_LF.name, parser.temporarystate)
 
@@ -216,7 +284,7 @@ class P1ParserTest(unittest.TestCase):
         parser = P1Parser()
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
         parser.telegram = "/FM5KAIFA-METER\r\n\r\n1-0:1.8.0(000671.578*kWh)\r\n1-0:2.8.0(000842.472*kWh)\r\n1-0:1.7.0(00.333*kW)\r\n1-0:2.7.0(00.444*kW)\r\n!E52C\r\n"
-        parser.P1Parser_Receive_char(parser.telegram)
+        parser.p1parser_receive_char(parser.telegram)
         self.assertEqual(parser.temporarystate, Parserstates.PARSER_LOOKING_FOR_BEGIN.name)
 
 
@@ -226,7 +294,7 @@ class P1ParserTest(unittest.TestCase):
         parser = P1Parser()  # one object from p1parserclass
         localtelegram = file.telegram
         parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
-        parser.P1Parser_Receive_char(localtelegram)
+        parser.p1parser_receive_char(localtelegram)
         ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
         if (parser.bufferCRC != ""):
             if (len(ReturnedValue) == 3):
@@ -241,7 +309,7 @@ class P1ParserTest(unittest.TestCase):
             parser = P1Parser()  # one object from p1parserclass
             localtelegram = file.telegram
             parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
-            parser.P1Parser_Receive_char(localtelegram)
+            parser.p1parser_receive_char(localtelegram)
             ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
             if (parser.bufferCRC != ""):
                 if (len(ReturnedValue) == 3):
@@ -259,7 +327,7 @@ class P1ParserTest(unittest.TestCase):
             parser = P1Parser()  # one object from p1parserclass
             localtelegram = file.telegram
             parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
-            parser.P1Parser_Receive_char(localtelegram)
+            parser.p1parser_receive_char(localtelegram)
             ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
             if (parser.bufferCRC != ""):
                 if (len(ReturnedValue) == 3):
@@ -277,7 +345,7 @@ class P1ParserTest(unittest.TestCase):
             parser = P1Parser()  # one object from p1parserclass
             localtelegram = file.telegram
             parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
-            parser.P1Parser_Receive_char(localtelegram)
+            parser.p1parser_receive_char(localtelegram)
             ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
             if (parser.bufferCRC != ""):
                 if (len(ReturnedValue) == 3):
@@ -295,7 +363,7 @@ class P1ParserTest(unittest.TestCase):
             parser = P1Parser()  # one object from p1parserclass
             localtelegram = file.telegram
             parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
-            parser.P1Parser_Receive_char(localtelegram)
+            parser.p1parser_receive_char(localtelegram)
             ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
             if (parser.bufferCRC != ""):
                 if (len(ReturnedValue) == 3):
@@ -313,7 +381,7 @@ class P1ParserTest(unittest.TestCase):
             parser = P1Parser()  # one object from p1parserclass
             localtelegram = file.telegram
             parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
-            parser.P1Parser_Receive_char(localtelegram)
+            parser.p1parser_receive_char(localtelegram)
             ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
             if (parser.bufferCRC != ""):
                 if (len(ReturnedValue) == 3):
@@ -331,7 +399,7 @@ class P1ParserTest(unittest.TestCase):
             parser = P1Parser()  # one object from p1parserclass
             localtelegram = file.telegram
             parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
-            parser.P1Parser_Receive_char(localtelegram)
+            parser.p1parser_receive_char(localtelegram)
             ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
             if (parser.bufferCRC != ""):
                 if (len(ReturnedValue) == 3):
@@ -349,7 +417,7 @@ class P1ParserTest(unittest.TestCase):
             parser = P1Parser()  # one object from p1parserclass
             localtelegram = file.telegram
             parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
-            parser.P1Parser_Receive_char(localtelegram)
+            parser.p1parser_receive_char(localtelegram)
             ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
             if (parser.bufferCRC != ""):
                 if (len(ReturnedValue) == 3):
@@ -367,7 +435,7 @@ class P1ParserTest(unittest.TestCase):
             parser = P1Parser()  # one object from p1parserclass
             localtelegram = file.telegram
             parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
-            parser.P1Parser_Receive_char(localtelegram)
+            parser.p1parser_receive_char(localtelegram)
             ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
             if (parser.bufferCRC != ""):
                 if (len(ReturnedValue) == 3):
@@ -385,7 +453,7 @@ class P1ParserTest(unittest.TestCase):
             parser = P1Parser()  # one object from p1parserclass
             localtelegram = file.telegram
             parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
-            parser.P1Parser_Receive_char(localtelegram)
+            parser.p1parser_receive_char(localtelegram)
             ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
             if (parser.bufferCRC != ""):
                 if (len(ReturnedValue) == 3):
@@ -403,7 +471,7 @@ class P1ParserTest(unittest.TestCase):
             parser = P1Parser()  # one object from p1parserclass
             localtelegram = file.telegram
             parser.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
-            parser.P1Parser_Receive_char(localtelegram)
+            parser.p1parser_receive_char(localtelegram)
             ReturnedValue = parser.frominttostringofhex(CRC16().calculate(parser.bufferBlock))
             if (parser.bufferCRC != ""):
                 if (len(ReturnedValue) == 3):
@@ -415,3 +483,7 @@ class P1ParserTest(unittest.TestCase):
             print("file is empty! ")
 
 
+
+
+if __name__ == '__main__':
+    unittest.main()
