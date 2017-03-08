@@ -30,14 +30,14 @@ class P1ScannerTest(unittest.TestCase):  # use the CapWords convention
 
     def test_IfCharisColon(self):
         parser = P1Parser()
-        parser.p1parserscanner(":")
+        parser.p1parser_scanner(":")
         self.assertEqual(parser.type,0)
         self.assertEqual(parser.value, 0)
         self.assertTrue(parser.ColonSeen)
 
     def test_IfCharisOpenParenthesis(self):
         parser = P1Parser()
-        parser.p1parserscanner("(")
+        parser.p1parser_scanner("(")
         self.assertEqual(parser.type,0)
         self.assertEqual(parser.value, 0)
         if (parser.type==0):
@@ -48,25 +48,25 @@ class P1ScannerTest(unittest.TestCase):  # use the CapWords convention
 
     def test_IfCharisPoint(self):
         parser = P1Parser()
-        parser.p1parserscanner(".")
+        parser.p1parser_scanner(".")
         self.assertTrue(parser.Dotseen)
 
     def test_IfCharisCloseParenthesis(self):
         parser = P1Parser()
         parser.DotSeen= True
         parser.type= 111
-        self.assertTrue(parser.p1parserscanner(")"))
+        self.assertTrue(parser.p1parser_scanner(")"))
 
     def test_IfCharisStar(self):
         parser = P1Parser()
-        parser.p1parserscanner("*")
+        parser.p1parser_scanner("*")
         self.assertTrue(parser.StarSeen)
 
     def test_Returningrighttypeandvalue(self):
         string= "1-0:1.8.0(000671.578*kWh)"
         parser = P1Parser()
         for letter in string:
-            parser.p1parserscanner(letter)
+            parser.p1parser_scanner(letter)
         self.assertEqual(parser.type, 180)
         self.assertEqual(parser.value, 671578)
 
@@ -77,7 +77,7 @@ class P1ScannerTest(unittest.TestCase):  # use the CapWords convention
         parser.ParenthesisSeen = True
         parser.ColonSeen = True
         parser.DotSeen = True
-        parser.p1parserscanner(c)
+        parser.p1parser_scanner(c)
         self.assertFalse(parser.CIsDigit)
 
     def test_RejectIfCharisCommaInsteadOfPoint(self):
@@ -85,7 +85,7 @@ class P1ScannerTest(unittest.TestCase):  # use the CapWords convention
         parser.ColonSeen = True
         #after colonseen the scanner has to wait for .
         c = ","
-        parser.p1parserscanner(c)
+        parser.p1parser_scanner(c)
         self.assertFalse(parser.DotSeen)
 
     def test_RejectIfCharisSemiColonInsteadOfPoint(self):
@@ -93,7 +93,7 @@ class P1ScannerTest(unittest.TestCase):  # use the CapWords convention
         parser.ColonSeen = True
         #after colonseen the scanner has to wait for .
         c = ";"
-        parser.p1parserscanner(c)
+        parser.p1parser_scanner(c)
         self.assertFalse(parser.DotSeen)
 
 class P1ParserTest(unittest.TestCase):

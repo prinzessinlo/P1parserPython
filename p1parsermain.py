@@ -19,5 +19,5 @@ telegram= bufferblock[0] + "!" + "\r\n"
 
 if (isinstance(file.telegram, str)):
     parser.p1parser_receive_telegram(file.telegram)
-    print(parser.converttojson())
-    print("Well done converted to json format")
+    parser.convert_to_json()
+    #print("Well done converted to json format")

@@ -53,7 +53,7 @@ class P1Parser(object):
         self.CRCLen = 0
         self.bufferCRC = ""
         self.bufferBlock = ""
-
+        self.bufferData= ""
         # -------
 
         self.EnergyConsumed = 0
@@ -64,19 +64,23 @@ class P1Parser(object):
     def __getattr__(self, ListofDataValues):
         return self.ListofDataValues
     #Establish json format supposed to deliver
-    def converttojson(self):
+    def convert_to_json(self):
     #Function names should be lowercase, with words separated by underscores
     #as necessary to improve readability.
         self.EnergyConsumed = energyCPObjAttr(self.ListofDataValues[0])
         self.EnergyProduced = energyCPObjAttr(self.ListofDataValues[1])
         self.PowerConsumed = powerCPObjAttr(self.ListofDataValues[2])
         self.PowerProduced = powerCPObjAttr(self.ListofDataValues[3])
-        json.dumps({"EnergyConsumed": self.EnergyConsumed, "EnergyProduced": self.EnergyProduced,
+        print(json.dumps({"EnergyConsumed": self.EnergyConsumed, "EnergyProduced": self.EnergyProduced,
                     "PowerConsumed": self.PowerConsumed, "PowerProduced": self.PowerProduced}, cls=ObjectEncoder,
-                   indent=2, sort_keys=True)
+                   indent=2, sort_keys=True))
+
+        #json.dumps({"EnergyConsumed": self.EnergyConsumed, "EnergyProduced": self.EnergyProduced,
+        #              "PowerConsumed": self.PowerConsumed, "PowerProduced": self.PowerProduced}, cls=ObjectEncoder,
+        #             indent=2, sort_keys=True)
 
     #
-    def p1parserscanner(self, c):
+    def p1parser_scanner(self, c):
         if c == ':':
             self.type = 0
             self.value = 0
@@ -142,7 +146,7 @@ class P1Parser(object):
         meterType = 0
         global a, b, c, d
         for letter in data:
-            if self.p1parserscanner(letter):
+            if self.p1parser_scanner(letter):
                 # print("Je suis là!")
                 meterType = self.p1p_gettype()
                 meterValue = self.p1p_getvalue()
@@ -169,7 +173,6 @@ class P1Parser(object):
             # print("pPower: ", self.ListofDataValues[3])
 
     def p1parser_receive_char(self, letter):
-        self.bufferData = ""
         IDidx = 0
         CRC = 4
         CRC_is_OK = False
@@ -223,7 +226,7 @@ class P1Parser(object):
                 self.BlockIdx = self.BlockIdx + 1
                 self.temporarystate = Parserstates.PARSER_LOOKING_FOR_LF1.name
 
-            elif (IDidx <= 1024):  # and (P1P_IsPrintableChar(newChar)))
+            elif IDidx <= 1024:  # and (P1P_IsPrintableChar(newChar)))
                 # We don't know the exact length of ID but we know Data bloc can be up to 1024characters
                 self.bufferBlock = self.bufferBlock + newChar
                 self.BlockIdx = self.BlockIdx + 1
@@ -232,7 +235,7 @@ class P1Parser(object):
                 self.temporarystate = Parserstates.PARSER_LOOKING_FOR_BEGIN.name
 
         elif self.temporarystate == Parserstates.PARSER_LOOKING_FOR_LF1.name:
-            if (newChar == "\n"):
+            if newChar == "\n":
                 self.bufferBlock = self.bufferBlock + newChar
                 self.BlockIdx = self.BlockIdx + 1
                 self.temporarystate = Parserstates.PARSER_LOOKING_FOR_CR2.name
